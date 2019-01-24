@@ -38,8 +38,8 @@ public class methodPairOfNumbers {
         for(int i=0; i<2; i++){
             System.out.println("Pick a card: ");
             String card = input.nextLine();
-            // If the user enters J, Q, or K then convert the entered value to 10.
-            // If the user enters A then count the value as 11 points.
+            // If user inputs J, Q or K, convert it to 10
+            // A --> 11
             cardNumber = getCardNumber(card);
 
             // Allow the user who receives the A to designate it either as 1 or 11.
@@ -47,6 +47,7 @@ public class methodPairOfNumbers {
                 System.out.println("Would you like to designate it as a 1 or 11?");
                 int aceCard = input.nextInt();
                 cardNumber = getAceNumber(aceCard);
+                input.nextLine();
             }
 
             // Check the inputted number to see if it's a zero
@@ -110,7 +111,6 @@ public class methodPairOfNumbers {
             num = 11;
         }else{
             num = Integer.parseInt(card);
-
         }
         return num;
     }
