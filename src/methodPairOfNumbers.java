@@ -29,6 +29,7 @@ public class methodPairOfNumbers {
         Scanner input = new Scanner(System.in);
         ArrayList<Integer> cardsDrawn = new ArrayList<>();
         int sum = 0;
+        int cardNumber = -1;
 
         // Welcome message
         showWelcomeMessage();
@@ -37,32 +38,33 @@ public class methodPairOfNumbers {
         for(int i=0; i<2; i++){
             System.out.println("Pick a card: ");
             String card = input.nextLine();
-
-            // Allow the user to enter the face cards as J,Q,K or A.
             // If the user enters J, Q, or K then convert the entered value to 10.
             // If the user enters A then count the value as 11 points.
-
-            int cardNumber = getCardNumber(card);
+            cardNumber = getCardNumber(card);
 
             // Allow the user who receives the A to designate it either as 1 or 11.
             if(cardNumber==11){
-                System.out.println("You've picked an Ace card. Would you like to designate it as a 1 or 11?");
+                System.out.println("Would you like to designate it as a 1 or 11?");
                 int aceCard = input.nextInt();
-                cardNumber = convertAceToNumber(aceCard);
+                cardNumber = getAceNumber(aceCard);
             }
 
             // Check the inputted number to see if it's a zero
             // If so, keep count
             validateCard(cardNumber);
 
+            // Remember the card number in a list
             cardsDrawn.add(cardNumber);
             sum += cardsDrawn.get(i);
 
         }
-        showSumOfCards(sum);
+        if(sum!=0){
+            showSumOfCards(sum);
+        }
 
         // Exit message
         showExitMessage();
+        input.close();
     }
 
     public static void showWelcomeMessage(){
@@ -101,10 +103,10 @@ public class methodPairOfNumbers {
         if(card.equalsIgnoreCase("J")||
                 card.equalsIgnoreCase("Q")||
                 card.equalsIgnoreCase("K")){
-            System.out.println("You've picked a face card, " + card);
+            System.out.println("You picked a face card " + card.toUpperCase());
             num = 10;
         }else if (card.equalsIgnoreCase("A")){
-            System.out.println("You've picked a face card, " + card);
+            System.out.println("You picked a face card " + card.toUpperCase());
             num = 11;
         }else{
             num = Integer.parseInt(card);
@@ -113,7 +115,7 @@ public class methodPairOfNumbers {
         return num;
     }
 
-    public static int convertAceToNumber(int a){
+    public static int getAceNumber(int a){
         int n = -1;
         if(a==1){
             n = 1;
