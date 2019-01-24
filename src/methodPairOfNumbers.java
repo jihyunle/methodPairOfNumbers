@@ -39,10 +39,10 @@ public class methodPairOfNumbers {
             System.out.println("Pick a card: ");
             String card = input.nextLine();
             // If user inputs J, Q or K, convert it to 10
-            // A --> 11
+            // Convert A to 11
             cardNumber = getCardNumber(card);
 
-            // Allow the user who receives the A to designate it either as 1 or 11.
+            // Allow the user to designate A as either 1 or 11
             if(cardNumber==11){
                 System.out.println("Would you like to designate it as a 1 or 11?");
                 int aceCard = input.nextInt();
